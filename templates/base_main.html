@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header>
+    {% block header %}{% endblock %}
+</header>
+<div class="container py-5">
+    <div class="row">
+        <main class="col-lg-12">
+            {% block main %}{% endblock %}
+        </main>
+    </div>
+</div>
+{% endblock %}

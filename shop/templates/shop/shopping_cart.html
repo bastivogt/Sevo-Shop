@@ -1,0 +1,76 @@
+{% extends "base_main.html" %}
+{% load static %}
+{% load i18n %}
+
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block main %}    
+    <h2 class="mb-3">{{ title }}</h2>
+    <div class="shadow d-flex justify-content-end align-items-center gap-2 p-3 mb-3">
+        <div class="fw-bold">
+            {% trans "Total Price" %}: <span>{{ order.get_total_price }} €</span>
+        </div>
+        <a class="btn btn-danger" href="">{% trans "Checkout" %}</a>
+    </div>
+
+    <div class="shadow p-3 mb-3">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">{% trans "Product" %}</th>
+                    <th scope="col">{% trans "Image" %}</th>
+                    <th scope="col">{% trans "Amount" %}</th>
+                    <th scope="col">{% trans "Size" %}</th>
+                    <th scope="col">
+                            {% trans "Unit Price" %}
+                    </th>
+                    <th scope="col">
+                            {% trans "Total Price" %}
+                    </th>
+                    <th scope="col">{% trans "Actions" %}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for item in order.get_products %}
+                    <tr>
+                        <th class="align-middle" scope="row">{{ item.product.id }}</th>
+                        <td class="align-middle">{{ item.product.title }}</td>
+                        <td class="align-middle">
+                            <img class="object-fit-cover" style="width: 50px; height: 50px;" src="{{ item.product.image.image.url }}" alt="item.product.image.title">
+                        </td>
+                        <td class="align-middle">{{ item.amount }}</td>
+                        <td class="align-middle">{{ item.size }}</td>
+                        <td class="align-middle">
+                            {{ item.get_price }} € 
+                        </td>
+                        <td class="align-middle">
+                            {{ item.get_total_price }} €
+                        </td>
+                        <td class="align-middle">
+                            <div class="d-flex justify-content-start gap-1">
+                                <button class="btn btn-danger">-</button>
+                                <button class="btn btn-danger">+</button>
+                            </div>
+                        </td>
+                    </tr>
+                  {% endfor %}
+
+                </tbody>
+              </table>
+        </div>
+    </div>
+
+    <hr>
+    {% for item in order.get_products %}
+        <div>{{ item }}</div>
+    {% endfor %}
+   
+{% endblock %}
+
+

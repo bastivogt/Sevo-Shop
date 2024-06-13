@@ -1,0 +1,60 @@
+{% load i18n %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">SEVO SHOP</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {% if "mbrs" in request.path %} active{% endif %}"{% if "mbrs" in request.path %} aria-current="page"{% endif %} href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% trans "Products" %}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li>
+                                <a class="dropdown-item{% if "SSS" in request.path %} active{% endif %}"{% if "SSS" in request.path %} aria-current="page"{% endif %} href="#">{% trans "Pants" %}</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item{% if "position" in request.path %} active{% endif %}"{% if "position" in request.path %} aria-current="page"{% endif %} href="#">{% trans "Shirts" %}</a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav mb-2 mb-lg-0 gap-1">
+
+
+
+                {% if user.is_authenticated %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "sevo-auth-user-detail" %}">{% trans "Hello" %}, {{ user }}!</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-secondary" href="{% url "sevo-auth-logout" %}"><i class="demo-icon icon-logout"></i></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="btn btn-primary position-relative" href="{% url "shop-shopping-cart" %}"><i class="demo-icon icon-basket"></i>
+                            {% if proc_order.get_products_count >= 1 %}
+                                <span id="shopping-cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        {{ proc_order.get_products_count }}
+                                </span>
+                            {% endif %}
+                        </a>
+                    </li>
+
+                {% else %}
+                    <li class="nav-item">
+                        <a class="btn btn-secondary" href="{% url "sevo-auth-login" %}"><i class="demo-icon icon-user"></i></a>
+                    </li>
+                {% endif %}
+            </ul>
+
+
+        </div>
+    </div>
+</nav>

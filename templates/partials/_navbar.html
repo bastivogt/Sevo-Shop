@@ -1,0 +1,51 @@
+{% load i18n %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">SEVO Vereinsmanager</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link{% if "member" in request.path %} active{% endif %}"{% if "member" in request.path %} aria-current="page"{% endif %} href="{% url "members-member-index" %}">{% trans "Members" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link{% if "gender" in request.path %} active{% endif %}"{% if "gender" in request.path %} aria-current="page"{% endif %} href="{% url "members-gender-index" %}">{% trans "Genders" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link{% if "position" in request.path %} active{% endif %}"{% if "position" in request.path %} aria-current="page"{% endif %} href="{% url "members-position-index" %}">{% trans "Positions" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link{% if "module" in request.path %} active{% endif %}"{% if "module" in request.path %} aria-current="page"{% endif %} href="{% url "members-module-index" %}">{% trans "Modules" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link{% if "license" in request.path %} active{% endif %}"{% if "license" in request.path %} aria-current="page"{% endif %} href="{% url "members-license-index" %}">{% trans "Licenses" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link{% if "tariff" in request.path %} active{% endif %}"{% if "tariff" in request.path %} aria-current="page"{% endif %} href="{% url "members-tariff-index" %}">{% trans "Tariffs" %}</a>
+                </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "sevo-auth-user-detail" %}">{% trans "Hello" %}, {{ user }}!</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "sevo-auth-logout" %}"><i class="demo-icon icon-logout"></i></a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if "login" in request.path %} active{% endif %}"{% if "members" in request.path %} aria-current="page"{% endif %} href="{% url "sevo-auth-login" %}"><i class="demo-icon icon-user"></i></a>
+                    </li>
+                {% endif %}
+
+            </ul>
+
+
+        </div>
+    </div>
+</nav>

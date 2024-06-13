@@ -1,0 +1,23 @@
+Sending emails from Django during development without using a real SMTP server. Python comes with a very basic and integrated SMTP server. To start it just open a terminal and type: python -m smtpd -n -c DebuggingServer localhost:1025 Then configure your settings.py using the following parameters. You will see the email directly in the terminal …
+settings.py
+
+
+if DEBUG:
+    EMAIL_HOST = 'localhost'
+    EMAIL_PORT = 1025
+    EMAIL_HOST_USER = ''
+    EMAIL_HOST_PASSWORD = ''
+    EMAIL_USE_TLS = False
+    DEFAULT_FROM_EMAIL = 'testing@example.com'
+
+
+
+
+An even easier solution is to set the email backend to the console backend, as this doesn't require running an SMTP server in a separate process and results in email contents getting printed to stdout directly:
+
+if DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+
+    https://gist.github.com/andreagrandi/7027319

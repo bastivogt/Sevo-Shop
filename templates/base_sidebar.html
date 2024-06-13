@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <header>
+        {% block header %}{% endblock %}
+    </header>
+    <div class="container-fluid py-5">
+        <div class="row">
+            <aside class="col-xxl-2 col-xl-3 order-lg-1 mb-3">
+                {% block side %}{% endblock %}
+            </aside>
+
+            <main class="col-xxl-10 col-xl-9 order-lg-2">
+                {% block main %}{% endblock %}
+            </main>
+
+
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base_main.html" %}
+{% load i18n %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block main %}
+    <div style="max-width: 500px;" class="mx-auto">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="card" style="max-width: 500px;">
+                <div class="card-header">
+                    <h3>{{ title }}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        {{ form.username.label_tag }}
+                        {{ form.username }}
+                        {% if form.username.errors %}
+                            <div class="alert alert-danger mt-1" role="alert">
+                                {{ form.username.errors }}
+                            </div> 
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.email.label_tag }}
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            <div class="alert alert-danger mt-1" role="alert">
+                                {{ form.email.errors }}
+                            </div> 
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.password.label_tag }}
+                        {{ form.password }}
+                        {% if form.password.errors %}
+                            <div class="alert alert-danger mt-1" role="alert">
+                                {{ form.password.errors }}
+                            </div> 
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-start align-content-center">
+                        <button class="btn btn-primary m-1">{% trans "Change userdata" %}</button>
+                        <a class="btn btn-primary m-1" href="{% url "sevo-auth-user-detail" %}" class="btn btn-primary">{% trans "Cancel" %}</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

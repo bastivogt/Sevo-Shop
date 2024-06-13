@@ -1,0 +1,44 @@
+{% extends "base_main.html" %}
+{% load static %}
+{% load i18n %}
+
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block main %}    
+    <h1>{{ title }}</h1>
+
+    <div class="row row-cols-lg-3 row-cols-1 g-3">
+        {% for product in products %}
+            <div class="col">
+                <div class="card h-100">
+                    <img class="card-img-top object-fit-cover" style="width: 100%; height: 300px;" src="{{ product.image.image.url }}" alt="{{ product.image.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.title }}</h5>
+                        <p>
+                            {{ product.get_categories_str }}
+                        </p>
+                        <div class="text-danger fw-bold fs-4 d-flex justify-content-end">
+                            {{ product.price }} €
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                    
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <div class="d-flex justify-content-end gap-1">
+                            <a class="btn btn-secondary d-inline-block" href="{% url "shop-product-detail" id=product.id %}">{% trans "More" %}</a>
+                        </div>
+                            
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}
+

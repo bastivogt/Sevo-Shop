@@ -1,0 +1,152 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-27 18:22+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\sevo_auth\forms.py:20 .\sevo_auth\forms.py:32 .\sevo_auth\forms.py:61
+#: .\sevo_auth\forms.py:76 .\sevo_auth\templates\sevo_auth\user_detail.html:20
+msgid "Username"
+msgstr "Benutzername"
+
+#: .\sevo_auth\forms.py:21 .\sevo_auth\forms.py:35 .\sevo_auth\forms.py:63
+msgid "Password"
+msgstr "Passwort"
+
+#: .\sevo_auth\forms.py:33 .\sevo_auth\forms.py:62 .\sevo_auth\forms.py:77
+#: .\sevo_auth\templates\sevo_auth\user_detail.html:26
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: .\sevo_auth\forms.py:36
+msgid "Password confirm"
+msgstr "Passwort bestätigen"
+
+#: .\sevo_auth\forms.py:51
+msgid "New password"
+msgstr "Neues Passwort"
+
+#: .\sevo_auth\forms.py:52
+msgid "New password confirm"
+msgstr "Neues Passwort bestätigen"
+
+#: .\sevo_auth\templates\sevo_auth\change_password.html:31
+#: .\sevo_auth\templates\sevo_auth\user_detail.html:34 .\sevo_auth\views.py:173
+msgid "Change password"
+msgstr "Passwort ändern"
+
+#: .\sevo_auth\templates\sevo_auth\change_password.html:32
+#: .\sevo_auth\templates\sevo_auth\change_user_data.html:52
+#: .\sevo_auth\templates\sevo_auth\forgot_password.html:37
+msgid "Cancel"
+msgstr "Abrechen"
+
+#: .\sevo_auth\templates\sevo_auth\change_user_data.html:51
+#: .\sevo_auth\templates\sevo_auth\user_detail.html:31 .\sevo_auth\views.py:214
+msgid "Change userdata"
+msgstr "Benutzerdaten ändern"
+
+#: .\sevo_auth\templates\sevo_auth\forgot_password.html:36
+#: .\sevo_auth\templates\sevo_auth\set_new_password_token.html:33
+msgid "Send"
+msgstr "Senden"
+
+#: .\sevo_auth\templates\sevo_auth\login.html:32
+#: .\sevo_auth\templates\sevo_auth\sign_up.html:36 .\sevo_auth\views.py:90
+msgid "Login"
+msgstr "Login"
+
+#: .\sevo_auth\templates\sevo_auth\login.html:38
+#: .\sevo_auth\templates\sevo_auth\sign_up.html:32 .\sevo_auth\views.py:127
+msgid "Sign up"
+msgstr "Registrieren"
+
+#: .\sevo_auth\templates\sevo_auth\login.html:41 .\sevo_auth\views.py:274
+msgid "Forgot password"
+msgstr "Passwort vergessen"
+
+#: .\sevo_auth\templates\sevo_auth\user_detail.html:38
+msgid "Logout"
+msgstr "Logout"
+
+#: .\sevo_auth\views.py:61
+msgid "You are logged out!"
+msgstr "Du bist ausgeloggt!"
+
+#: .\sevo_auth\views.py:82
+msgid "You are logged in!"
+msgstr "Du bist eingeloggt!"
+
+#: .\sevo_auth\views.py:85
+msgid "Login failed!"
+msgstr "Login fehlgeschlagen!"
+
+#: .\sevo_auth\views.py:111
+msgid "Failed password confirm!"
+msgstr "Passwort bestätigen fehlgeschlagen!"
+
+#: .\sevo_auth\views.py:117
+msgid "You are signed up!"
+msgstr "Du bist registriert!"
+
+#: .\sevo_auth\views.py:121 .\sevo_auth\views.py:203
+msgid "Failed, username allready exists!"
+msgstr "Fehler, Benutzername existiert bereits!"
+
+#: .\sevo_auth\views.py:139
+msgid "Hello"
+msgstr "Hallo"
+
+#: .\sevo_auth\views.py:157
+msgid "Change password failed!"
+msgstr "Passwort ändern fehlgeschlagen!"
+
+#: .\sevo_auth\views.py:163
+msgid "Change password successful!"
+msgstr "Passwort erfolgreich geändert!"
+
+#: .\sevo_auth\views.py:198
+msgid "Userdata successful changed!"
+msgstr "Benutzerdaten erfoögreich geändert!"
+
+#: .\sevo_auth\views.py:208
+msgid "Failed, wrong password!"
+msgstr "Fehler, falsches Passwort!"
+
+#: .\sevo_auth\views.py:254
+msgid "Please, check your e-mails!"
+msgstr "Check deine E-Mails!"
+
+#: .\sevo_auth\views.py:265
+msgid "Username not found"
+msgstr "Benutzername nicht gefunden"
+
+#: .\sevo_auth\views.py:293
+msgid "Fail, password not confirm!"
+msgstr "Passwort bestätigen fehlgeschlagen!"
+
+#: .\sevo_auth\views.py:309
+msgid "Password changed!"
+msgstr "Passwort geändert!"
+
+#: .\sevo_auth\views.py:313
+msgid "Fail, something went wrong!"
+msgstr "Fehler, etwas ist schiefgelaufen!"
+
+#: .\sevo_auth\views.py:318
+msgid "Set new password"
+msgstr "Neues Passwort setzen"
