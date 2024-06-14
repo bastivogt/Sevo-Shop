@@ -10,7 +10,7 @@
 
 {% block main %}    
     <h2 class="mb-3">{{ title }}</h2>
-    <div class="shadow d-flex justify-content-end align-items-center gap-2 p-3 mb-3">
+    <div class="shadow d-flex justify-content-end align-items-center gap-2 p-3 mb-5">
         <div class="fw-bold">
             {% trans "Total Price" %}: <span>{{ order.get_total_price }} €</span>
         </div>
@@ -38,27 +38,37 @@
                 </thead>
                 <tbody>
                     {% for item in order.get_products %}
-                    <tr>
-                        <th class="align-middle" scope="row">{{ item.product.id }}</th>
-                        <td class="align-middle">{{ item.product.title }}</td>
-                        <td class="align-middle">
-                            <img class="object-fit-cover" style="width: 50px; height: 50px;" src="{{ item.product.image.image.url }}" alt="item.product.image.title">
-                        </td>
-                        <td class="align-middle">{{ item.amount }}</td>
-                        <td class="align-middle">{{ item.size }}</td>
-                        <td class="align-middle">
-                            {{ item.get_price }} € 
-                        </td>
-                        <td class="align-middle">
-                            {{ item.get_total_price }} €
-                        </td>
-                        <td class="align-middle">
-                            <div class="d-flex justify-content-start gap-1">
-                                <button class="btn btn-danger">-</button>
-                                <button class="btn btn-danger">+</button>
-                            </div>
-                        </td>
-                    </tr>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ item.id }}" name="item-id">
+                        <tr>
+                            <th class="align-middle" scope="row">{{ item.product.id }}</th>
+                            <td class="align-middle">
+                                <a href="{% url "shop-product-detail" id=item.product.id %}">
+                                    {{ item.product.title }}
+                                </a>
+                            </td>
+                            <td class="align-middle">
+                                <img class="object-fit-cover" style="width: 50px; height: 50px;" src="{{ item.product.image.image.url }}" alt="item.product.image.title">
+                            </td>
+                            <td class="align-middle">
+                                <input class="form-control" type="number" name="item-amount" value="{{ item.amount }}" step="1" min="1">
+                            </td>
+                            <td class="align-middle">{{ item.size }}</td>
+                            <td class="align-middle">
+                                {{ item.get_price }} € 
+                            </td>
+                            <td class="align-middle">
+                                {{ item.get_total_price }} €
+                            </td>
+                            <td class="align-middle">
+                                <div class="d-flex justify-content-start gap-1">
+                                    <button class="btn btn-primary"><i class="demo-icon icon-pencil"></i></button>
+                                    <a class="btn btn-danger" href="{% url "shop-delete-item" id=item.id %}"><i class="demo-icon icon-cancel"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </form>
                   {% endfor %}
 
                 </tbody>

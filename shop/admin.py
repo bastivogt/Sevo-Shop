@@ -63,6 +63,7 @@ class ProductAdmin(admin.ModelAdmin):
 class OrderedProductAdmin(admin.ModelAdmin):
     list_display = [
         "order",
+        "id",
         "get_linked_image_tag",
         "product",
         "size",

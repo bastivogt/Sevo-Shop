@@ -26,7 +26,7 @@
                 {% endautoescape %}
             </p>
             <hr>
-            <form action="" method="post">
+            <form action="{% url "shop-add-item" %}" method="post" id="add-item-to-cart-form">
                 {% csrf_token %}
                 <input type="hidden" name="product-id" value="{{ product.id }}">
                 <div class="mb-3">
@@ -41,7 +41,7 @@
                     <label for="product-amount" class="form-label">{% trans "Amount" %}</label>
                     <input class="form-control" type="number" name="product-amount" id="product-amount" min="1" step="1" value="1">
                 </div>
-                <button class="btn btn-danger">{% trans "Order" %}</button>
+                <button id="add-item-to-cart-submit" class="btn btn-danger">{% trans "Order" %}</button>
             </form>
         </div>
     </div>
@@ -51,6 +51,10 @@
 
 
    
+{% endblock %}
+
+{% block js %}
+    <script src="{% static "shop/js/add_item_to_cart.js" %}"></script>
 {% endblock %}
 
 

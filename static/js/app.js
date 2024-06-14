@@ -9,6 +9,7 @@ function doBackLink() {
         item.addEventListener("click", (evt) => {
             evt.preventDefault();
             window.history.go(-1);
+            
         });
     });
 }
