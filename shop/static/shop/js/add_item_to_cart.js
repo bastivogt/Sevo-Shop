@@ -9,7 +9,7 @@ submitBtn.addEventListener("click", async (e) => {
     const formData = new FormData(addItemForm);
     console.log(formData);
 
-    const response = await fetch("/shop/add-item-to-cart", {
+    const response = await fetch("/shop/add-item", {
         method: "POST",
         body: formData,
       });

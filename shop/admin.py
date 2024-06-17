@@ -2,6 +2,7 @@ from django.contrib import admin
 
 
 from . import models
+from . import forms
 
 
 class ImageAdmin(admin.ModelAdmin):
@@ -61,6 +62,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 # OrderedProduct
 class OrderedProductAdmin(admin.ModelAdmin):
+    form = forms.OrderedProductAdminForm
     list_display = [
         "order",
         "id",
@@ -74,6 +76,8 @@ class OrderedProductAdmin(admin.ModelAdmin):
         "order",
         "product",
     ]
+
+    
 
 
 

@@ -3,6 +3,8 @@ from django.contrib import admin
 from django.utils.html import format_html
 from tinymce import models as tinymce_models
 
+from django.core.validators import MinValueValidator, MaxValueValidator
+
 
 
 from django.contrib.auth import get_user_model
@@ -183,8 +185,10 @@ class Order(models.Model):
 class OrderedProduct(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    size = models.ForeignKey(Size, null=True, blank=True, on_delete=models.SET_NULL)
-    amount = models.IntegerField()
+    size = models.ForeignKey(Size, null=True, on_delete=models.SET_NULL)
+    amount = models.IntegerField(default=1, validators=[
+        MinValueValidator(1)
+    ])
     
 
     @admin.display(description="Linked Image")

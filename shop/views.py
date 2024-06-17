@@ -7,6 +7,7 @@ from django.contrib import messages
 
 
 from . import models
+from . import forms
 
 # Create your views here.
 
@@ -31,14 +32,27 @@ def product_list(request):
 @login_required(login_url="sevo-auth-login")
 def product_detail(request, id):
     user = request.user
+    
     product = get_object_or_404(models.Product, id=id)
-    product_sizes = product.sizes.all()
 
+
+    try:
+        order = models.Order.objects.get(user=user, done=False)
+    except:
+        order = models.Order(user=user)
+        order.order_id = order.create_order_id()
+        order.save()
+
+    orderedProduct = models.OrderedProduct(product=product, order=order)
+    form = forms.OrderedProductFEForm(instance=orderedProduct)
+
+    
 
     return render(request, "shop/product_detail.html", {
         "title": "PRODUCT DETAIL",
         "product": product,
-        "product_sizes": product_sizes
+
+        "form": form
     })
 
 
@@ -89,52 +103,46 @@ def add_item_to_cart(request):
 
   
         messages.add_message(request, messages.SUCCESS, _("Product added to cart!"))
+        return JsonResponse({"status": "success"})
     else:
         messages.add_message(request, messages.ERROR, _("Something went wrong"))
+        return JsonResponse({"status": "fail"})
 
     #return HttpResponse("ADD ITEM TO CART")
-    return JsonResponse({"products_count": order.get_products_count()})
+    
 
 
 
 @login_required(login_url="sevo-auth-login")
 def add_item(request):
+    
     if request.method == "POST":
-        product_id = request.POST.get("product-id")
-        product_size = request.POST.get("product-size")
-        product_amount = request.POST.get("product-amount")
+        user = request.user
 
-        print(f"product_id: {product_id}")
-        print(f"product_size: {product_size}")
-        print(f"product_amount: {product_amount}")
-
-        if product_id != None and product_size != None and product_amount != None:
-            try:
-                order = models.Order.objects.get(user=request.user, done=False)
-            except:
-                order = models.Order(user=request.user)
-                order.order_id = order.create_order_id()
-                order.save()
-                #messages.add_message(request, messages.SUCCESS, _("Added product to cart."))
-            
-        product = get_object_or_404(models.Product, id=int(product_id))
-        size = get_object_or_404(models.Size, id=int(product_size))
+        product_id = int(request.POST.get("product"))
+        print(int(product_id))
+        
+        product = get_object_or_404(models.Product, id=product_id)
 
         try:
-            orderedProduct = models.OrderedProduct.objects.get(order=order, size=size, product=product)
-            orderedProduct.amount += int(product_amount)
+            order = models.Order.objects.get(user=user, done=False)
         except:
-            orderedProduct = models.OrderedProduct(order=order, size=size, product=product, amount=int(product_amount))
-        orderedProduct.save()
+            order = models.Order(user=user)
+            order.order_id = order.create_order_id()
+            order.save()
 
-  
-        messages.add_message(request, messages.SUCCESS, _("Product added to cart!"))
-    else:
-        messages.add_message(request, messages.ERROR, _("Something went wrong"))
+        orderedProduct = models.OrderedProduct(product=product, order=order)
+        form = forms.OrderedProductFEForm(request.POST, instance=orderedProduct)
 
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, _("Product added to cart!"))
+            return JsonResponse({"status": "success"})
+        else:
+            print(form.errors)
+            messages.add_message(request, messages.ERROR, form.errors)
+            return JsonResponse({"status": "fail"})
 
-    url = reverse("shop-product-detail", args=[int(product_id)])
-    return HttpResponseRedirect(url)
 
 
 

@@ -37,8 +37,13 @@
                         <a class="btn btn-secondary" href="{% url "sevo-auth-logout" %}"><i class="demo-icon icon-logout"></i></a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="btn btn-primary position-relative" href="{% url "shop-shopping-cart" %}"><i class="demo-icon icon-basket"></i></a>
+                    <li class="nav-item pe-2">
+                        <a class="btn btn-primary position-relative" href="{% url "shop-shopping-cart" %}"><i class="demo-icon icon-basket"></i>
+                            {% if proc_order.get_products_count >= 1 %}
+                            <span id="shopping-cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {{ proc_order.get_products_count }}
+                            </span>
+                        {% endif %}</a>
                     </li>
 
                 {% else %}

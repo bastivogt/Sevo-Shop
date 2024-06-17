@@ -8,7 +8,10 @@ function doBackLink() {
     elements.backLink.forEach((item) => {
         item.addEventListener("click", (evt) => {
             evt.preventDefault();
+            //window.history.go(-1);
+            
             window.history.go(-1);
+
             
         });
     });
